@@ -15,13 +15,8 @@ public class PetOwner {
         Pet pet2 = new Pet("Garfield", "Cat", 5, 'L', true);
         Pet pet3 = new Pet("Jaws", "goldfish", 2, 'S', false);
 
-        printPet(pet1);
-        printPet(pet2);
-        printPet(pet3);
-    }
-
-    public static void printPet(Pet pet) {
-        System.out.println("Pet: name=" + pet.getName() + ", type=" + pet.getType() + ", age=" + pet.getAge() +
-                ", size=" + pet.getSize() + ", isMale=" + pet.isMale());
+        pet1.printPet();
+        pet2.printPet();
+        pet3.printPet();
     }
 }

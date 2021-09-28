@@ -19,6 +19,11 @@ public class Pet {
         this.isMale = isMale;
     }
 
+    public void printPet() {
+        System.out.println("Pet: name=" + this.getName() + ", type=" + getType() + ", age=" + getAge() +
+                ", size=" + size + ", isMale=" + isMale);
+    }
+
     public String getName() {
         return name;
     }
