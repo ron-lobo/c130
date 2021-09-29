@@ -10,12 +10,29 @@ public class TempConverter {
         System.out.println("Please enter your name: ");
         String userName = myScanner.nextLine();
 
-        System.out.println("Please enter temp in Fahrenheit: ");
-        double tempInF = myScanner.nextDouble();
+        System.out.println("1. Convert C->F");
+        System.out.println("2. Convert F->C");
+        String temp0, temp1;
+        int choice = myScanner.nextInt();
+        if (choice == 1) {
+            temp0 = "C";
+            temp1 = "F";
+        } else {
+            temp0 = "F";
+            temp1 = "C";
+        }
 
-        double tempInC = (tempInF - 32.0) * 5.0 / 9.0;
+        System.out.println("Please enter temp in " + temp0 + ": ");
+        double temp0Value = myScanner.nextDouble();
 
-        System.out.println("temp = " + tempInC + "C");
+        double temp1Value;
+        if (choice == 1) {
+            temp1Value = temp0Value * 9 / 5 + 32.0;
+        } else {
+            temp1Value = (temp0Value - 32.0) * 5.0 / 9.0;
+        }
+
+        System.out.println("temp = " + temp1Value + temp1);
         System.out.println("thanks " + userName);
     }
 }
