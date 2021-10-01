@@ -31,6 +31,7 @@ public class Final {
 
         System.out.println("s0=" + s0);
         System.out.println("s1=" + s1);
+        System.out.println();
     }
 
     public void method2() {
@@ -46,16 +47,29 @@ public class Final {
         sb1.append(321);
         sb1.append(' ').append(321);
 
-        sb0.append(' ').append(true).append(3.141);
+        sb0.append(' ').append(true).append(' ').append(3.141);
 
         System.out.println("sb0=" + sb0);
         System.out.println("sb1=" + sb1);
+        System.out.println();
+
+        addSomething(sb0, "test0");
+        addSomething(sb1, "test1");
+
+        System.out.println("sb0=" + sb0);
+        System.out.println("sb1=" + sb1);
+        System.out.println();
 
     /*
             [[sb0]]      --->    "xyz"
 
-            sb1      --->    "abc 321 321"      <---   sb0
+                             0xFE83CB98
+            sb1      --->    "abc 321 321 true 3.141"      <---   sb0
      */
+    }
+
+    private void addSomething(StringBuilder sb, String text) {
+        sb.append(' ').append(text);
     }
 
 
@@ -63,6 +77,6 @@ public class Final {
     public static void main(String[] args) {
         Final q = new Final();
         q.method1();
-        //q.method2();
+        q.method2();
     }
 }
