@@ -16,8 +16,10 @@ public class PetOwner {
         Pet pet2 = new Pet("Garfield", "Cat", 5, 'L', true);
         Pet pet3 = new Pet("Jaws", "goldfish", 2, 'S', false);
 
-        pet1.printPet();
-        pet2.printPet();
-        pet3.printPet();
+        System.out.println(pet1);
+        System.out.println(pet2);
+        System.out.println(pet3);
+
+        pet1.exercisePet();
     }
 }
