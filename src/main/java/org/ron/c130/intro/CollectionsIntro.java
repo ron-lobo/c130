@@ -2,9 +2,7 @@ package org.ron.c130.intro;
 
 import org.apache.commons.collections4.list.TreeList;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class CollectionsIntro {
 
@@ -12,6 +10,8 @@ public class CollectionsIntro {
         CollectionsIntro ci = new CollectionsIntro();
         ci.arrays();
         ci.lists();
+        ci.sets();
+        ci.maps();
     }
 
     private void arrays() {
@@ -43,6 +43,14 @@ public class CollectionsIntro {
         manipulateList("apache commons TreeList", strings3);
 
         ((ArrayList<String>) strings2).trimToSize();
+
+        processCollection(strings1);
+
+        strings2 = List.of("a", "bc", "def", "ijk", "rst", "pq");
+//        strings2.add("xyz");
+        strings1 = new ArrayList<>(strings2);
+        strings1.add("xyz");
+        strings1.remove("ijk");
     }
 
     private void manipulateList(String text, List<String> strings) {
@@ -69,11 +77,109 @@ public class CollectionsIntro {
         System.out.println("length of strings: " + strings.size());
     }
 
+    /**
+     * LL -> c0[obj, ref->c2] c2[obj3, ref->c1] c1[obj2, ref->null]
+     * <p>
+     * LL -> c1 -> c2 -> c0
+     */
 
+    private void sets() {
+        System.out.println("\nsets()");
+        Set<String> set1 = new HashSet<>();
+        Set<String> set2 = new TreeSet<>();
+        processSet("hashset", set1);
+        processSet("treeset", set2);
+        processCollection(set1);
+
+        set1 = Set.of("abc", "def", "ijk", "xyz");
+//        set1.remove(null);
+        set2 = new HashSet<>(set1);
+        set2.add("hello");
+    }
+
+    private void processSet(String text, Set<String> set) {
+        System.out.println("\nProcessing set: " + text);
+        set.add("cat");
+        set.add("dog");
+        set.add("piggy");
+        set.add("horse");
+        set.add("sheep");
+        set.add("dog");
+        set.add("piggy");
+        set.add("horse");
+        System.out.println("set size = " + set.size());
+        set.remove("");
+//        set.remove(null);
+        set.remove("cat");
+        set.remove("horse");
+        System.out.println("set size = " + set.size());
+        System.out.println("contents of set ...");
+        for (String str : set) {
+            System.out.println("   " + str);
+        }
+    }
+
+    private void processCollection(Collection<String> collection) {
+        System.out.println("\nProcessing collection ... size = " + collection.size());
+        int i = 0;
+//        for (String str : collection) {
+//            if (++i % 2 == 0) {
+//                collection.remove(str);
+//            }
+//        }
+        for (Iterator<String> iter = collection.iterator(); iter.hasNext(); ) {
+            String str = iter.next();
+            if (++i % 2 == 0) {
+                System.out.println("removing " + str);
+                iter.remove();
+            }
+        }
+        System.out.println("collection size = " + collection.size());
+        System.out.println("collection is " + (collection.isEmpty() ? "empty" : "not empty"));
+    }
+
+    public void maps() {
+        System.out.println("\nMaps()");
+        Map<Integer, String> map1 = new HashMap<>();
+        Map<Integer, String> map3 = new LinkedHashMap<>();
+        processMap(map1, "hashmap");
+        processMap(map3, "linked hash map");
+
+        Map<String, List<String>> map2 = new TreeMap<>();
+
+        Map<String, String> map4 = new TreeMap<>();
+        map4 = Map.of("a", "b", "x", "y", "i", "j", "p", "s", "r", "t");
+        map4 = Map.ofEntries(Map.entry("a", "b"), Map.entry("h", "t"), Map.entry("e", "x"));
+        // map4.put("", "");
+        map4 = new TreeMap<>(map4);
+        map4.put("", null);
+    }
+
+    private void processMap(Map<Integer, String> stringMap, String text) {
+        System.out.println("processing map: " + text);
+        stringMap.put(201, "Ironman");
+        stringMap.put(400, "Spiderman");
+        stringMap.put(305, "Batman");
+        stringMap.put(202, "Thor");
+        stringMap.put(325, "Hulk");
+
+        System.out.println("map size = " + stringMap.size());
+        for (Integer i : stringMap.keySet()) {
+            System.out.println("  key=" + i + " value=" + stringMap.get(i));
+        }
+
+        stringMap.put(202, "Captain Marvel");
+        stringMap.remove(201, null);
+        stringMap.remove(201, "Black Widow");
+        stringMap.remove(325);
+        stringMap.put(202, "Captain Marvel");
+        stringMap.put(203, "Captain America");
+        System.out.println("map size = " + stringMap.size());
+
+        for (Map.Entry<Integer, String> entry : stringMap.entrySet()) {
+            System.out.println("  key=" + entry.getKey() + " value=" + entry.getValue());
+        }
+
+        System.out.println("room 333 is occupied by " + stringMap.getOrDefault(333, "nobody"));
+    }
 }
-
-/**
- * LL -> c0[obj, ref->c2] c2[obj3, ref->c1] c1[obj2, ref->null]
- * <p>
- * LL -> c1 -> c2 -> c0
- */
