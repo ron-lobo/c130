@@ -29,6 +29,22 @@ public class Pet {
                 ", isMale=" + isMale;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+        Pet other = (Pet) obj;
+        return name.equals(other.name) &&
+                type.equals(other.type) &&
+                age == other.age &&
+                size == other.size &&
+                isMale == other.isMale;
+    }
+
     public String getName() {
         return name;
     }
