@@ -62,6 +62,7 @@ public class HashCode {
         pet2OwnerMap.put(pet1, "Dom");
         pet2OwnerMap.put(pet2, "Lettie");
         pet2OwnerMap.put(pet3, "Dom");
+        pet2OwnerMap.put(pet3, "Lettie");
 
         System.out.println("local DB cache contents ...");
         for (Pet pet : pet2OwnerMap.keySet()) {

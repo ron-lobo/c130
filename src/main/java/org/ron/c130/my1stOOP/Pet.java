@@ -1,5 +1,7 @@
 package org.ron.c130.my1stOOP;
 
+import java.util.Objects;
+
 public class Pet {
 
     private String name;
@@ -22,33 +24,76 @@ public class Pet {
 
     @Override
     public String toString() {
-        return "Pet: name=" + this.getName() +
-                ", type=" + getType() +
-                ", age=" + getAge() +
+        return "Pet{" +
+                "name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", age=" + age +
                 ", size=" + size +
-                ", isMale=" + isMale;
+                ", isMale=" + isMale +
+                '}';
     }
 
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (this == obj) {
+//            return true;
+//        }
+//        if (obj == null || obj.getClass() != this.getClass()) {
+//            return false;
+//        }
+//        Pet other = (Pet) obj;
+//        return Objects.equals(name, other.name) &&
+////                (type == other.type || type != null && type.equals(other.type)) &&
+//                Objects.equals(type, other.type) &&
+//                age == other.age &&
+//                size == other.size &&
+//                isMale == other.isMale;
+//    }
+
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || obj.getClass() != this.getClass()) {
-            return false;
-        }
-        Pet other = (Pet) obj;
-        return name.equals(other.name) &&
-                type.equals(other.type) &&
-                age == other.age &&
-                size == other.size &&
-                isMale == other.isMale;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pet pet = (Pet) o;
+        return age == pet.age && size == pet.size && isMale == pet.isMale && Objects.equals(name, pet.name) && Objects.equals(type, pet.type);
     }
 
     @Override
     public int hashCode() {
+        return Objects.hash(name, type, age, size, isMale);
+    }
+
+    public int hashCode_v1() {
         return 0;
     }
+
+    public int hashCode_v2() {
+        return name.hashCode() + type.hashCode() + age + size + Boolean.hashCode(isMale);
+    }
+
+    public int hashCode_v3() {
+        final int PRIME = 13;
+        int result = name.hashCode();
+        result *= PRIME + type.hashCode();
+        result *= PRIME + age;
+        result *= PRIME + size;
+        result *= PRIME + Boolean.hashCode(isMale);
+        return result;
+    }
+
+    public int hashCode_v4() {
+        return getHashCode(name, type, age, size, isMale);
+    }
+
+    public static int getHashCode(Object... objects) {
+        final int PRIME = 13;
+        int result = 1;
+        for (Object obj : objects) {
+            result *= PRIME + obj.hashCode();
+        }
+        return result;
+    }
+
 
     public String getName() {
         return name;
