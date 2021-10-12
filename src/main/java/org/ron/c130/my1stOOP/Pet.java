@@ -45,6 +45,11 @@ public class Pet {
                 isMale == other.isMale;
     }
 
+    @Override
+    public int hashCode() {
+        return 0;
+    }
+
     public String getName() {
         return name;
     }
