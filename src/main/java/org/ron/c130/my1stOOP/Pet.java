@@ -2,7 +2,7 @@ package org.ron.c130.my1stOOP;
 
 import java.util.Objects;
 
-public class Pet {
+public class Pet implements Comparable<Pet> {
 
     private String name;
     private final String type;
@@ -125,5 +125,10 @@ public class Pet {
 
     public boolean isMale() {
         return isMale;
+    }
+
+    @Override
+    public int compareTo(Pet p) {
+        return Character.compare(size, p.size);
     }
 }

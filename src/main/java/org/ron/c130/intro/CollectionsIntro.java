@@ -1,6 +1,7 @@
 package org.ron.c130.intro;
 
 import org.apache.commons.collections4.list.TreeList;
+import org.ron.c130.my1stOOP.Pet;
 
 import java.util.*;
 
@@ -12,6 +13,8 @@ public class CollectionsIntro {
         ci.lists();
         ci.sets();
         ci.maps();
+        ci.collections();
+        ci.sorting();
     }
 
     private void arrays() {
@@ -181,5 +184,72 @@ public class CollectionsIntro {
         }
 
         System.out.println("room 333 is occupied by " + stringMap.getOrDefault(333, "nobody"));
+    }
+
+    private void collections() {
+        System.out.println("\ncollections");
+
+        List<String> list0 = List.of("abc", "xyz", "ijk");
+
+        List<String> synchList = Collections.synchronizedList(new ArrayList<>(list0));
+        synchList.add("pqr");
+
+        List<String> list1 = new ArrayList<>();
+        list1.addAll(synchList);
+
+//        list1.sort(null);
+        Collections.sort(list1);
+//        Collections.sort(list1, null);
+        for (String s : list1) {
+            System.out.println(s);
+        }
+    }
+
+    private void sorting() {
+        System.out.println("\nsorting");
+
+        List<Pet> petList = new ArrayList<>();
+        petList.add(new Pet("Rover", "Poodle", 3, 'M', true));
+        petList.add(new Pet("Garfield", "Cat", 5, 'L', true));
+        petList.add(new Pet("Jaws", "Goldfish", 2, 'S', false));
+        petList.add(new Pet("Rover", "Rat", 4, 'L', true));
+
+        System.out.println("petlist (pre-sort): ");
+        for (Pet pet : petList)
+            System.out.println("    " + pet);
+
+//        Collections.sort(petList, new PetComparator());
+        petList.sort(new PetComparator().reversed());
+
+        System.out.println("petlist (post-sort 1): ");
+        for (Pet pet : petList)
+            System.out.println("    " + pet);
+
+        petList.sort(new Comparator<Pet>() {
+            public int compare(Pet p1, Pet p2) {
+                return Integer.compare(p1.getAge(), p2.getAge());
+            }
+        });
+
+        System.out.println("petlist (post-sort 2): ");
+        for (Pet pet : petList)
+            System.out.println("    " + pet);
+
+        Collections.sort(petList);
+        System.out.println("petlist (natural order): ");
+        for (Pet pet : petList)
+            System.out.println("    " + pet);
+
+    }
+
+    public static class PetComparator implements Comparator<Pet> {
+        public int compare(Pet p1, Pet p2) {
+            int i = p1.getName().compareTo(p2.getName());
+            if (i == 0)
+                i = Integer.compare(p1.getAge(), p2.getAge());
+            if (i == 0)
+                i = p1.getType().compareTo(p2.getType());
+            return i;
+        }
     }
 }
