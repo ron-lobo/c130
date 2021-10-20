@@ -89,7 +89,8 @@ public class Utils {
     public static String print(boolean isOk, Object o) {
         String s = o == null ? "" : o.toString();
         if (isOk) System.out.println(s);
-        else System.err.println(s);
+//        else System.err.println(s);
+        else System.out.println("ERROR: " + s);
         return s;
     }
 
