@@ -89,7 +89,7 @@ public class Pet implements Comparable<Pet> {
         final int PRIME = 13;
         int result = 1;
         for (Object obj : objects) {
-            result *= PRIME + obj.hashCode();
+            result *= PRIME + (obj == null ? 0 : obj.hashCode());
         }
         return result;
     }

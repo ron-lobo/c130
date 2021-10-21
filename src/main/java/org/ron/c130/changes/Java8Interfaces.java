@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import static org.ron.c130.changes.Utils.print;
 import static org.ron.c130.changes.Utils.printMethod;
 
-public class Java8Features_Interfaces {
+public class Java8Interfaces {
 
 	public static void main(String[] args) {
 		printMethod("Features Introduced in Java 8: Interfaces()");

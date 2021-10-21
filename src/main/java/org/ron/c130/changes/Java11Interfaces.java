@@ -2,11 +2,11 @@ package org.ron.c130.changes;
 
 import java.util.List;
 
-public class Java11Features_Interfaces {
+public class Java11Interfaces {
 
 	public static void main(String[] args) {
 		Utils.print("Features Introduced in Java 11: Interfaces()");
-		Java11Features_Interfaces j11 = new Java11Features_Interfaces();
+		Java11Interfaces j11 = new Java11Interfaces();
 		j11.useJ11Interface();
 	}
 
