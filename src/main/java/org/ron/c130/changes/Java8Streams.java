@@ -235,7 +235,7 @@ public class Java8Streams {
 
         // findFirst
         Optional<Integer> optionalFirstOdd = integerList.stream().filter(i -> i % 2 == 1).findFirst();
-        optionalFirstOdd.ifPresentOrElse(integer -> print("findFirst: first odd number =", integer), () -> print("no odds found"));
+        optionalFirstOdd.ifPresentOrElse(i -> print("findFirst: first odd number =", i), () -> print("no odds found"));
 
         // findAny
         Optional<Integer> optionalFirstAny = integerList.stream().filter(i -> i % 2 == 1).findAny();
